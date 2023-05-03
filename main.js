@@ -57,6 +57,7 @@ const posts = [
 ];
 
 const container = document.querySelector("#container");
+const likes = posts.map(profile => profile.likes);
 
 posts.forEach(profile => {
     container.innerHTML += `        
@@ -91,4 +92,19 @@ posts.forEach(profile => {
     </div>            
 </div>
 `;
-})
+});
+
+const likeCounter = document.querySelectorAll(".js-likes-counter")
+const nodeLikeButtons = document.querySelectorAll(".like-button");
+const arrLikeButtons = [...nodeLikeButtons];
+
+for (var i = 0; i < posts.length; i++) {
+    const button = arrLikeButtons[i];
+    const counter = likeCounter[i];
+    const liked = likes[i];
+    arrLikeButtons[i].addEventListener("click", () => {
+        button.style.color = "red";
+        counter.innerHTML = `${liked+1}`;
+    });
+}
+
