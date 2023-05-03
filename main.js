@@ -99,12 +99,19 @@ const nodeLikeButtons = document.querySelectorAll(".like-button");
 const arrLikeButtons = [...nodeLikeButtons];
 
 for (var i = 0; i < posts.length; i++) {
-    const button = arrLikeButtons[i];
+    const buttonClicked = arrLikeButtons[i];
     const counter = likeCounter[i];
-    const liked = likes[i];
+    const likeAdded = likes[i];
+    let flag = true;
     arrLikeButtons[i].addEventListener("click", () => {
-        button.style.color = "red";
-        counter.innerHTML = `${liked+1}`;
+        if(flag) {
+            buttonClicked.style.color = "red";
+            counter.innerHTML = `${likeAdded+1}`;
+            return flag = false;
+        }
+        buttonClicked.style.color = "";
+        counter.innerHTML = `${likeAdded}`;
+        return flag = true;
     });
 }
 
